@@ -1,10 +1,12 @@
 - name: Deploy to Tomcat
   hosts: web
   become: yes
+
   tasks:
+
     - name: Copy WAR file to Tomcat
       copy:
-        src: "/var/snap/jenkins/5013/workspace/MyAnsibleWebApp/target/MyAnsibleWebApp.war"
+        src: "../target/MyAnsibleWebApp.war"
         dest: "/opt/tomcat/webapps/MyAnsibleWebApp.war"
         remote_src: no
 
