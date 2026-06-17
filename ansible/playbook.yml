@@ -3,14 +3,14 @@
   become: yes
 
   tasks:
-
     - name: Copy WAR file to Tomcat
       copy:
-        src: "../target/MyAnsibleWebApp.war"
-        dest: "/opt/tomcat/webapps/MyAnsibleWebApp.war"
+        src: "/var/snap/jenkins/5042/workspace/ansibleworkspace/target/ansibleExternal.war"
+        dest: "/opt/tomcat/webapps/ansibleExternal.war"
         remote_src: no
 
     - name: Restart Tomcat
-      systemd:
-        name: tomcat
-        state: restarted
+      shell: |
+        /opt/tomcat/bin/shutdown.sh || true
+        sleep 5
+        /opt/tomcat/bin/startup.sh
